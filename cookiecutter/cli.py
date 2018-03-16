@@ -87,8 +87,12 @@ def validate_extra_context(ctx, param, value):
     u'--debug-file', type=click.Path(), default=None,
     help=u'File to be used as a stream for DEBUG logging',
 )
+@click.option(
+    u'--subfolder', type=click.Path(), default='',
+    help=u'Specify subfolder to search for the template',
+)
 def main(
-        template, extra_context, no_input, checkout, verbose,
+        template, subfolder, extra_context, no_input, checkout, verbose,
         replay, overwrite_if_exists, output_dir, config_file,
         default_config, debug_file):
     """Create a project from a Cookiecutter project template (TEMPLATE).
@@ -110,7 +114,7 @@ def main(
 
     try:
         cookiecutter(
-            template, checkout, no_input,
+            template, subfolder, checkout, no_input,
             extra_context=extra_context,
             replay=replay,
             overwrite_if_exists=overwrite_if_exists,

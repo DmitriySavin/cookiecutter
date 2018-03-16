@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 def cookiecutter(
-        template, checkout=None, no_input=False, extra_context=None,
+        template, subfolder, checkout=None, no_input=False, extra_context=None,
         replay=False, overwrite_if_exists=False, output_dir='.',
         config_file=None, default_config=False, password=None):
     """
@@ -56,6 +56,7 @@ def cookiecutter(
 
     repo_dir, cleanup = determine_repo_dir(
         template=template,
+        subfolder=subfolder,
         abbreviations=config_dict['abbreviations'],
         clone_to_dir=config_dict['cookiecutters_dir'],
         checkout=checkout,

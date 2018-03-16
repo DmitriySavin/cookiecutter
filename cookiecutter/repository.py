@@ -61,7 +61,7 @@ def repository_has_cookiecutter_json(repo_directory):
     return repo_directory_exists and repo_config_exists
 
 
-def determine_repo_dir(template, abbreviations, clone_to_dir, checkout,
+def determine_repo_dir(template, subfolder, abbreviations, clone_to_dir, checkout,
                        no_input, password=None):
     """
     Locate the repository directory from a template reference.
@@ -112,8 +112,8 @@ def determine_repo_dir(template, abbreviations, clone_to_dir, checkout,
         cleanup = False
 
     for repo_candidate in repository_candidates:
-        if repository_has_cookiecutter_json(repo_candidate):
-            return repo_candidate, cleanup
+        if repository_has_cookiecutter_json(os.path.join(repo_candidate, subfolder)):
+            return os.path.join(repo_candidate, subfolder), cleanup
 
     raise RepositoryNotFound(
         'A valid repository for "{}" could not be found in the following '
