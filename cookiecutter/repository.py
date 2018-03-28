@@ -112,8 +112,12 @@ def determine_repo_dir(template, subfolder, abbreviations, clone_to_dir, checkou
         cleanup = False
 
     for repo_candidate in repository_candidates:
-        if repository_has_cookiecutter_json(os.path.join(repo_candidate, subfolder)):
-            return os.path.join(repo_candidate, subfolder), cleanup
+        if subfolder:
+            path_subbfolder = os.path.join(repo_candidate, subfolder)
+        else:
+            path_subfolder = repo_candidate
+        if repository_has_cookiecutter_json(path_subfolder):
+            return path_subfolder, cleanup
 
     raise RepositoryNotFound(
         'A valid repository for "{}" could not be found in the following '

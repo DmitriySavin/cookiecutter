@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 def cookiecutter(
-        template, subfolder, checkout=None, no_input=False, extra_context=None,
+        template, subfolder=None, checkout=None, no_input=False, extra_context=None,
         replay=False, overwrite_if_exists=False, output_dir='.',
         config_file=None, default_config=False, password=None):
     """
